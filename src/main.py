@@ -18,6 +18,7 @@ def insert_vids(cursor, data, table_chan):
 
     for datum in data:
         if datum not in table_chan:
+            print(datum)
             cursor.execute(sql_insert_chann, [datum])
 
 
@@ -27,7 +28,6 @@ def seen_daemon():
 
     while True:
         idx, channels = seen.get(block=True)
-        print(channels)
         cursor = conn.cursor()
         insert_vids(cursor, channels, table_chans)
         conn.commit()
