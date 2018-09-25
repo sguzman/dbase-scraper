@@ -4,6 +4,7 @@ import queue
 import threading
 import psycopg2
 import json
+import random
 from multiprocessing.dummy import Pool
 
 
@@ -77,7 +78,10 @@ def get_incumbent_chans(conn):
 
 def main():
     threading.Thread(target=seen_daemon, daemon=True).start()
-    pool.map(vids, range(limit))
+    nums = range(limit)
+    random.shuffle(nums)
+
+    pool.map(vids, nums)
     print('done')
 
 
