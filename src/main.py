@@ -78,7 +78,7 @@ def get_incumbent_chans(conn):
 
 def main():
     threading.Thread(target=seen_daemon, daemon=True).start()
-    nums = range(limit)
+    nums = [x for x in range(limit)]
     random.shuffle(nums)
 
     pool.map(vids, nums)
